@@ -14,12 +14,15 @@ gem 'coffee-rails',   '~> 4.2'
 gem 'turbolinks',     '~> 5'
 gem 'jbuilder',       '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'will_paginate',  '~> 3.1.0'
+gem 'bootstrap-will_paginate'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'devise'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'faker'

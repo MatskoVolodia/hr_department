@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable
+  devise :database_authenticatable, :validatable
 
   has_and_belongs_to_many :user_groups
 

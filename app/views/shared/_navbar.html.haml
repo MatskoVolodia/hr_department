@@ -4,4 +4,6 @@
       %a.navbar-brand= I18n.t('defaults.title')
     %ul.nav.navbar-nav
       %li.active
-        = link_to humanize_attribute(:users), users_path
+        = link_to t('navbar.users'), users_path
+      %li
+        = link_to t('navbar.user_groups'), user_groups_path

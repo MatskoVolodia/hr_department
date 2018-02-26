@@ -1,0 +1,8 @@
+.panel-group
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        %a{ href: "##{id}", data: { toggle: 'collapse' }}= title
+    .panel-collapse.collapse{ id: id }
+      .panel-body
+        = yield

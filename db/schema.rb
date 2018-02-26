@@ -13,9 +13,16 @@
 ActiveRecord::Schema.define(version: 20180226194510) do
 
   create_table "user_groups", force: :cascade do |t|
-    t.string "group_name"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_groups_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "user_group_id"
+    t.index ["user_group_id"], name: "index_user_groups_users_on_user_group_id"
+    t.index ["user_id"], name: "index_user_groups_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,3 +1,20 @@
 en:
   defaults:
-    title: HR Department
+    title:        HR Department
+    edit:         Edit
+    save:         Save
+    destroy:      Destroy
+    confirmation: Are you sure?
+
+  notices:
+    destroyed: '%{item} was successfully destroyed.'
+    created:   '%{item} was successfully created.'
+    edited:    '%{item} was successfully edited.'
+
+  navbar:
+    users:       Users
+    user_groups: Groups
+
+  users:
+    create:    Create new user
+    destroyed: User

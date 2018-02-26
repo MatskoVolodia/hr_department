@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   resources :user_groups
-  resources :users, only: %i[index]
+  resources :users
   devise_for :users
 end
