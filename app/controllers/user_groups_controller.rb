@@ -11,7 +11,7 @@ class UserGroupsController < ApplicationController
 
     render :new and return unless @user_group.save
 
-    redirect_to @user_group, notice: 'User group was successfully created.'
+    redirect_to @user_group, notice: t('notices.created', item: UserGroup.name)
   end
 
   def update
