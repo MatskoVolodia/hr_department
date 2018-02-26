@@ -1,0 +1,7 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %a.navbar-brand= I18n.t('defaults.title')
+    %ul.nav.navbar-nav
+      %li.active
+        = link_to humanize_attribute(:users), users_path

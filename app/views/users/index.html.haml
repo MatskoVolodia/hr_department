@@ -1,0 +1,12 @@
+%table.table.table-responsive.table-striped
+  %thead
+    %th= humanize_attribute(:email)
+    %th= humanize_attribute(:first_name)
+    %th= humanize_attribute(:last_name)
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.first_name
+        %td= user.last_name
