@@ -2,9 +2,18 @@ class UserGroupsController < ApplicationController
   before_action :set_user_group,        only: %i[show edit update destroy]
   before_action :create_new_user_group, only: %i[index]
 
+  decorates_assigned :user_group
+  decorates_assigned :users
+
   def index
-    @q = UserGroup.ransack(params[:q])
-    @user_groups = @q.result.paginate(pagination_params)
+    if params[:user_id]
+      @user_groups = User.find_by(id: params[:user_id]).user_groups
+    elsif params[:post_id]
+       @user_groups = Post.find_by(id: params[:post_id]).user_groups
+    else
+      @q = UserGroup.ransack(params[:q])
+      @user_groups = @q.result.paginate(pagination_params)
+    end
   end
 
   def create
@@ -12,7 +21,7 @@ class UserGroupsController < ApplicationController
 
     render :new and return unless @user_group.save
 
-    redirect_to @user_group, notice: t('notices.created', item: UserGroup.name)
+    redirect_to user_groups_url, notice: t('notices.created', item: UserGroup.name)
   end
 
   def update

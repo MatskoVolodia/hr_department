@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    render :new unless @post.save
+    render :new and return unless @post.save
 
     redirect_to @post, notice: t('notices.created', item: Post.name)
   end

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user,        only: %i[edit update destroy add_to_user_group]
+  before_action :set_user,        only: %i[edit update destroy]
   before_action :create_new_user, only: %i[index new]
 
   def index
@@ -27,14 +27,6 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: t('notices.destroyed', item: User.name)
   end
 
-  def add_to_user_group
-    if user_params[:user_group_ids]
-      @user.user_groups << UserGroup.where(id: user_params[:user_group_ids])
-    end
-
-    redirect_back fallback_location: users_path
-  end
-
   private
 
   def set_user
@@ -52,7 +44,6 @@ class UsersController < ApplicationController
       :last_name,
       :password,
       :password_confirmation,
-      :user_group_ids,
       user_group_ids: []
     )
   end

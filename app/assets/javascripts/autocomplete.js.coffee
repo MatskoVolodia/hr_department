@@ -1,12 +1,14 @@
 class Autocomplete
-  constructor: (input, url, ransackAttribute) ->
-    @input   = $(input)
-    @url     = url
-    @ransack = ransackAttribute
+  constructor: (input, url, ransackAttribute, preselectUrl) ->
+    @input        = $(input)
+    @url          = url
+    @ransack      = ransackAttribute
+    @preselectUrl = preselectUrl
 
   init: ->
-    @input.select2({
-      ajax: {
+    @input.select2(
+      multiple: true
+      ajax:
         url: @url
         dataType: 'json'
         delay: 200
@@ -16,8 +18,24 @@ class Autocomplete
         processResults: (data) ->
           results: data
         cache: true
-      }
-    })
+    )
+
+    @loadPreselected() if @preselectUrl
+
+  loadPreselected: ->
+    $.ajax(
+      type: 'GET'
+      url: @preselectUrl
+    ).then (data) =>
+      for item in data
+        console.log(item)
+        option = new Option(item.text, item.id, true, true)
+        @input.append(option).trigger('change')
+        @input.trigger(
+          type: 'select2:select'
+          params:
+            data: item
+        )
 
 window.HRDepartment ?= {}
 window.HRDepartment.Autocomplete = Autocomplete

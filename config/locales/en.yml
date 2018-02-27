@@ -23,8 +23,12 @@ en:
     create:       Create new user
     destroyed:    User
     user_groups:  User Groups
-    add_to_group: Add to user group
+    add_to_group: Add to user groups
 
   user_groups:
     title:  User Groups
     create: Create User Group
+
+  posts:
+    download_attachment: Download attachment
+    everyone:            Everyone

@@ -1,9 +1,23 @@
-= form_for @post do |f|
-  = render 'shared/form_errors', item: @post
+= form_for post do |f|
+  = render 'shared/form_errors', item: post
 
   = form_group(:title,         f, :text_field)
   = form_group(:content,       f, :text_area)
   = form_group(:picture,       f, :file_field)
   = form_group(:attached_file, f, :file_field)
 
+  = f.label :user_groups
+  = f.select :user_group_ids, [], {}, class: 'select-group', style: 'width: 100%', name: 'post[user_group_ids][]'
+
+  %hr
+
   .actions= f.submit t('defaults.save'), class: 'form-control'
+
+:coffee
+  handler = new HRDepartment.Autocomplete(
+    '.select-group',
+    "#{user_groups_path}",
+    'group_name_cont',
+    "#{post_user_groups_path(post, format: :json) unless post.new_record?}"
+  )
+  handler.init()

@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  resources :posts
   resources :user_groups
-  resources :users do
-    member do
-      patch :add_to_user_group
-    end
+
+  resources :posts do
+    resources :user_groups, only: %i[index]
   end
+
+  resources :users do
+    resources :user_groups, only: %i[index]
+  end
+
   devise_for :users
 end
