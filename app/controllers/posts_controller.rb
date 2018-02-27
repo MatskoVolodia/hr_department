@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 
   load_and_authorize_resource
 
+  impressionist actions: %i[show], unique: %i[user_id impressionable_id]
+
   def index
     @posts = Post.all.paginate(pagination_params)
   end
