@@ -5,6 +5,8 @@ class UserGroupsController < ApplicationController
   decorates_assigned :user_group
   decorates_assigned :users
 
+  load_and_authorize_resource
+
   def index
     if params[:user_id]
       @user_groups = User.find_by(id: params[:user_id]).user_groups

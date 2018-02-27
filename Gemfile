@@ -7,6 +7,7 @@ end
 
 gem 'bootstrap-sass',             '~> 3.3.7'
 gem 'bootstrap-will_paginate'
+gem 'cancancan'
 gem 'coffee-rails',               '~> 4.2'
 gem 'devise'
 gem 'draper'

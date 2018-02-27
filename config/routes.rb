@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  root to: 'posts#index'
+
   resources :user_groups
 
   resources :posts do
@@ -8,6 +12,4 @@ Rails.application.routes.draw do
   resources :users do
     resources :user_groups, only: %i[index]
   end
-
-  devise_for :users
 end

@@ -3,6 +3,8 @@ class PostsController < ApplicationController
 
   decorates_assigned :post
 
+  load_and_authorize_resource
+
   def index
     @posts = Post.all.paginate(pagination_params)
   end

@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user,        only: %i[edit update destroy]
   before_action :create_new_user, only: %i[index new]
 
+  load_and_authorize_resource
+
   def index
     @q = User.ransack(params[:q])
     @users = @q.result.paginate(pagination_params)

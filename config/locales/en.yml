@@ -9,6 +9,9 @@ en:
     destroy:      Destroy
     confirmation: Are you sure?
 
+  authentication:
+    logout: Logout
+
   notices:
     destroyed: '%{item} was successfully destroyed.'
     created:   '%{item} was successfully created.'

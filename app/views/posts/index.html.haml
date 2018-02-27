@@ -1,5 +1,13 @@
-= render 'feed', posts: @posts
+- @posts.each do |post|
+  .well
+    .container
+      .row
+        .col-sm-3
+          = image_tag post.picture.url(:thumb)
+        .col-sm-5
+          %h3= link_to post.title, post
+        .col-sm-4
+          = render 'tags', post: post
 
--#%td= link_to 'Show', post
--#%td= link_to 'Edit', edit_post_path(post)
--#%td= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+.text-center
+  = will_paginate @posts, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer
