@@ -1,19 +1,14 @@
-%h1 Listing user_groups
+.container
+  %ul.nav.nav-tabs
+    %li.active
+      %a{ data: { toggle: 'tab' }, href: '#user-groups' }= t('user_groups.title')
+    %li
+      %a{ data: { toggle: 'tab' }, href: '#create-user-group'}= t('user_groups.create')
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+  .tab-content
+    #user-groups.tab-pane.fade.in.active
+      = render 'shared/search_bar', query: @q, searchable_fields: :group_name_cont
+      = render 'table', user_groups: @user_groups
 
-  %tbody
-    - @user_groups.each do |user_group|
-      %tr
-        %td= link_to 'Show', user_group
-        %td= link_to 'Edit', edit_user_group_path(user_group)
-        %td= link_to 'Destroy', user_group, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New User group', new_user_group_path
+    #create-user-group.tab-pane.fade.well
+      = render 'form', user_group: @user_group

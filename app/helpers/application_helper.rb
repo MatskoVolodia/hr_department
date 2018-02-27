@@ -18,4 +18,8 @@ module ApplicationHelper
     when :alert   then 'alert alert-error'
     end
   end
+
+  def active_class(link_path)
+    'active' if current_page?(link_path)
+  end
 end

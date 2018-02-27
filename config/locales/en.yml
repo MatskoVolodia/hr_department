@@ -1,8 +1,11 @@
 en:
   defaults:
     title:        HR Department
+    create:       Create
+    show:         Show
     edit:         Edit
     save:         Save
+    search:       Search
     destroy:      Destroy
     confirmation: Are you sure?
 
@@ -16,6 +19,12 @@ en:
     user_groups: Groups
 
   users:
-    create:      Create new user
-    destroyed:   User
-    user_groups: User Groups
+    title:        Users
+    create:       Create new user
+    destroyed:    User
+    user_groups:  User Groups
+    add_to_group: Add to user group
+
+  user_groups:
+    title:  User Groups
+    create: Create User Group

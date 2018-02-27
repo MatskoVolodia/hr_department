@@ -1,0 +1,19 @@
+%table.table.table-responsive.table-striped
+  %thead
+    %tr
+      %th= humanize_attribute(:group_name)
+      %th= humanize_attribute(:users_count)
+      %th
+
+  %tbody
+    - user_groups.each do |user_group|
+      %tr
+        %td= user_group.group_name
+        %td= user_group.users.size
+        %td
+          = link_to t('defaults.destroy'), user_group, method: :delete, data: { confirm: t('defaults.confirmation') }, class: 'btn btn-danger pull-right'
+          = link_to t('defaults.edit'), edit_user_group_path(user_group), class: 'btn btn-primary pull-right'
+          = link_to t('defaults.show'), user_group, class: 'btn btn-info pull-right'
+
+.text-center
+  = will_paginate user_groups, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer

@@ -1,0 +1,19 @@
+%table.table.table-responsive.table-striped.mt-5
+  %thead
+    %th= humanize_attribute(:email)
+    %th= humanize_attribute(:first_name)
+    %th= humanize_attribute(:last_name)
+    %th
+
+  %tbody
+    - users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.first_name
+        %td= user.last_name
+        %td
+          = link_to t('defaults.destroy'), user_path(user), method: :delete, data: { confirm: t('defaults.confirmation') }, class: 'btn btn-danger pull-right'
+          = link_to t('defaults.edit'), edit_user_path(user), class: 'btn btn-primary pull-right'
+
+.text-center
+  = will_paginate users, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer

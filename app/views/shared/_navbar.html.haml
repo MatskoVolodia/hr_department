@@ -3,9 +3,9 @@
     .navbar-header
       %a.navbar-brand= I18n.t('defaults.title')
     %ul.nav.navbar-nav
-      %li.active
+      %li{ class: active_class(users_path) }
         = link_to t('navbar.users'), users_path
-      %li
+      %li{ class: active_class(user_groups_path) }
         = link_to t('navbar.user_groups'), user_groups_path
-      %li
+      %li{ class: active_class(posts_path) }
         = link_to t('navbar.posts'), posts_path

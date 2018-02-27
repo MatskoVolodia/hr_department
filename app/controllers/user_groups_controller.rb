@@ -3,7 +3,8 @@ class UserGroupsController < ApplicationController
   before_action :create_new_user_group, only: %i[index]
 
   def index
-    @user_groups = UserGroup.all
+    @q = UserGroup.ransack(params[:q])
+    @user_groups = @q.result.paginate(pagination_params)
   end
 
   def create
@@ -38,7 +39,7 @@ class UserGroupsController < ApplicationController
 
   def user_group_params
     params.require(:user_group).permit(
-      :name,
+      :group_name,
       post_ids: [],
       user_ids: []
     )
