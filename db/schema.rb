@@ -10,12 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226194510) do
+ActiveRecord::Schema.define(version: 20180226223557) do
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string "attached_file_file_name"
+    t.string "attached_file_content_type"
+    t.integer "attached_file_file_size"
+    t.datetime "attached_file_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts_user_groups", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_group_id"
+    t.index ["post_id"], name: "index_posts_user_groups_on_post_id"
+    t.index ["user_group_id"], name: "index_posts_user_groups_on_user_group_id"
+  end
 
   create_table "user_groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_groups_posts", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_group_id"
+    t.index ["post_id"], name: "index_user_groups_posts_on_post_id"
+    t.index ["user_group_id"], name: "index_user_groups_posts_on_user_group_id"
   end
 
   create_table "user_groups_users", force: :cascade do |t|

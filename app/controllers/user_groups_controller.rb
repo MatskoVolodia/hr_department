@@ -17,7 +17,7 @@ class UserGroupsController < ApplicationController
   def update
     render :edit unless @user_group.update(user_group_params)
 
-    redirect_to @user_group, notice: t('notices.created', item: UserGroup.name)
+    redirect_to @user_group, notice: t('notices.updated', item: UserGroup.name)
   end
 
   def destroy
@@ -37,6 +37,10 @@ class UserGroupsController < ApplicationController
   end
 
   def user_group_params
-    params.require(:user_group).permit(:name)
+    params.require(:user_group).permit(
+      :name,
+      post_ids: [],
+      user_ids: []
+    )
   end
 end

@@ -1,3 +1,14 @@
 %h1 Editing user
 
-= render 'form'
+.container
+  %ul.nav.nav-tabs
+    %li.active
+      %a{ data: { toggle: 'tab' }, href: '#user-form' }= t('defaults.edit')
+    %li
+      %a{ data: { toggle: 'tab' }, href: '#user-groups'}= t('users.user_groups')
+
+  .tab-content
+    #user-form.tab-pane.fade.in.active
+      = render 'form'
+    #user-groups.tab-pane.fade
+      = render 'user_groups'

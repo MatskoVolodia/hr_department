@@ -9,12 +9,13 @@ en:
   notices:
     destroyed: '%{item} was successfully destroyed.'
     created:   '%{item} was successfully created.'
-    edited:    '%{item} was successfully edited.'
+    updated:   '%{item} was successfully updated.'
 
   navbar:
     users:       Users
     user_groups: Groups
 
   users:
-    create:    Create new user
-    destroyed: User
+    create:      Create new user
+    destroyed:   User
+    user_groups: User Groups

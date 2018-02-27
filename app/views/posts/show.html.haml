@@ -1,0 +1,9 @@
+.container
+  .well
+    .media
+      .pull-left
+        = image_tag post.picture.url(:thumb)
+      .media-body
+        %h4.text-left= post.title
+        %p.pull-right= post.created_ago
+        %p= post.content

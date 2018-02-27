@@ -17,13 +17,13 @@ class UsersController < ApplicationController
   def update
     redirect_to users_path and return if @user.update(user_params)
 
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user), notice: t('notices.updated', User.name)
   end
 
   def destroy
     @user.destroy
 
-    redirect_to users_path, notice: t('users.destroyed')
+    redirect_to users_path, notice: t('notices.destroyed', item: User.name)
   end
 
   private
@@ -42,7 +42,8 @@ class UsersController < ApplicationController
       :first_name,
       :last_name,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      user_group_ids: []
     )
   end
 end

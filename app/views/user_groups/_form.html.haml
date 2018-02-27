@@ -2,5 +2,7 @@
   = render 'shared/form_errors', item: @user_group
 
   = form_group(:name, f, :text_field)
+  = collection_select(:user_group, :author_id, Author.all, :id, :name_with_initial, {:selected => current_book.authors.map(&:id)})
+
 
   .actions= f.submit t('defaults.save'), class: 'form-control'

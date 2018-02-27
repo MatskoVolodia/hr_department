@@ -1,0 +1,9 @@
+= form_for @post do |f|
+  = render 'shared/form_errors', item: @post
+
+  = form_group(:title,         f, :text_field)
+  = form_group(:content,       f, :text_area)
+  = form_group(:picture,       f, :file_field)
+  = form_group(:attached_file, f, :file_field)
+
+  .actions= f.submit t('defaults.save'), class: 'form-control'
