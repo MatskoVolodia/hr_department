@@ -1,7 +1,7 @@
-module Users
+module Posts
   class Create < Shared::Create
     def call
-      User.new(params).tap(&:save)
+      Post.new(params).tap(&:save)
     end
   end
 end

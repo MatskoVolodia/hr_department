@@ -1,7 +1,7 @@
-module Users
+module UserGroups
   class Create < Shared::Create
     def call
-      User.new(params).tap(&:save)
+      UserGroup.new(params).tap(&:save)
     end
   end
 end

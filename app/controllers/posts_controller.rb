@@ -20,9 +20,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Posts::Create.call(params: post_params)
 
-    render :new and return unless @post.save
+    render :new and return unless @post.persisted?
 
     redirect_to @post, notice: t('notices.created', item: Post.name)
   end
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    Shared::Destroy.call(item: @post)
 
     redirect_to posts_url, notice: t('notices.destroyed', item: Post.name)
   end

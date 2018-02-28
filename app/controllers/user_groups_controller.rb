@@ -8,20 +8,13 @@ class UserGroupsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if params[:user_id]
-      @user_groups = User.find_by(id: params[:user_id]).user_groups
-    elsif params[:post_id]
-       @user_groups = Post.find_by(id: params[:post_id]).user_groups
-    else
-      @q = UserGroup.ransack(params[:q])
-      @user_groups = @q.result.paginate(pagination_params)
-    end
+    @facade = UserGroups::IndexFacade.new(params.merge(pagination_params: pagination_params))
   end
 
   def create
-    @user_group = UserGroup.new(user_group_params)
+    @user_group = UserGroups::Create.call(params: user_group_params)
 
-    render :new and return unless @user_group.save
+    render :new and return unless @user_group.persisted?
 
     redirect_to user_groups_url, notice: t('notices.created', item: UserGroup.name)
   end
@@ -33,7 +26,7 @@ class UserGroupsController < ApplicationController
   end
 
   def destroy
-    @user_group.destroy
+    Shared::Destroy.call(item: @user_group)
 
     redirect_to user_groups_url, notice: t('notices.destroyed', item: UserGroup.name)
   end

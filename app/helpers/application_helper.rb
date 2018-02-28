@@ -4,10 +4,12 @@ module ApplicationHelper
   end
 
   def form_group(attribute, form, field_type)
-    content_tag(:div, class: 'form-group') do
-      form.label(attribute) +
-          form.send(field_type, attribute, class: 'form-control')
-    end
+    content = [
+      form.label(attribute),
+      form.send(field_type, attribute, class: 'form-control')
+    ].join("\n")
+
+    content_tag(:div, class: 'form-group') { content }
   end
 
   def flash_class(level)

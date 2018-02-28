@@ -1,15 +1,15 @@
-module Users
+module Shared
   class Destroy < ::Callable
     def initialize(params = {})
-      @user = params[:user]
+      @item = params[:item]
     end
 
     def call
-      user.destroy
+      item.destroy
     end
 
     private
 
-    attr_reader :user
+    attr_reader :item
   end
 end

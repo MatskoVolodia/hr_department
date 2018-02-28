@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = Users::Create.call(user_params: user_params)
+    @user = Users::Create.call(params: user_params)
 
     render :new and return unless @user.persisted?
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    Users::Destroy.call(user: @user)
+    Shared::Destroy.call(item: @user)
 
     redirect_to users_path, notice: t('notices.destroyed', item: User.name)
   end
