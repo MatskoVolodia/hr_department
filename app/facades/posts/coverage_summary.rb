@@ -13,12 +13,20 @@ module Posts
     end
 
     def percentage
-      number_to_percentage(views.to_f / post.targets.size.to_f * 100, precision: 2)
+      @percentage ||= number_to_percentage(percent_viewed, precision: 2)
+    end
+
+    def has_targets?
+      post.targets.size.positive?
     end
 
     private
 
     attr_reader :post
+
+    def percent_viewed
+      views.to_f / post.targets.size.to_f * 100
+    end
 
     def find_impressions
       Impression.where(impressionable: post).size

@@ -1,5 +1,5 @@
 .well
   %h4
     %span= t('posts.dashboard.percentage')
-    %span= facade.percentage
+    %span= facade.percentage if facade.has_targets?
     %span (#{t('posts.dashboard.out_of', current: facade.views, target: facade.targets.size)})

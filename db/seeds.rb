@@ -8,16 +8,40 @@
 
 Admin.create(
   email:      'admin@gmail.com',
-  password:   'qwerty123123',
+  password:   '123123123',
   first_name: Faker::Name.first_name,
   last_name:  Faker::Name.last_name
 )
 
 10.times do
-  Employee.create(
+  UserGroup.create(group_name: Faker::StarWars.planet)
+end
+
+10.times do
+  employee = Employee.create(
     email:      Faker::Internet.email,
-    password:   'qwerty123123',
+    password:   '123123123',
     first_name: Faker::Name.first_name,
     last_name:  Faker::Name.last_name
   )
+
+  offsets = [rand(UserGroup.count), rand(UserGroup.count)].uniq
+
+  offsets.each do |offset|
+    employee.user_groups << UserGroup.offset(offset).first
+  end
 end
+
+Post.skip_callback(:create, :after, :send_notifications)
+
+10.times do
+  post = Post.create(title: Faker::StarWars.call_sign, content: Faker::Lorem.paragraphs)
+
+  offsets = [rand(UserGroup.count), rand(UserGroup.count)].uniq
+
+  offsets.each do |offset|
+    post.user_groups << UserGroup.offset(offset).first
+  end
+end
+
+Post.set_callback(:create, :after, :send_notifications)
