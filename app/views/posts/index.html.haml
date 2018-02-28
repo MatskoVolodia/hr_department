@@ -1,5 +1,6 @@
-.well.container.text-center
-  = link_to t('defaults.create'), new_post_path, class: 'btn btn-success'
+- if can? :manage, Post
+  .well.container.text-center
+    = link_to t('defaults.create'), new_post_path, class: 'btn btn-success'
 
 = render 'shared/search_bar', query: @facade.ransack_q, searchable_fields: :title_or_content_cont
 

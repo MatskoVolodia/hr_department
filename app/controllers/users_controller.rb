@@ -46,6 +46,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
+    params[:post][:user_group_ids] ||= []
+
     params.require(:user).permit(
       :email,
       :first_name,

@@ -50,6 +50,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
+    params[:post][:user_group_ids] ||= []
+
     params.require(:post).permit(
       :title,
       :content,

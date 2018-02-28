@@ -151,3 +151,6 @@ Layout/SpaceAroundOperators:
 
 Rails/HasAndBelongsToMany:
   Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
