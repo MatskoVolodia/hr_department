@@ -28,11 +28,14 @@ gem 'will_paginate',              '~> 3.1.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '~> 2.13'
+  gem 'capybara',                 '~> 2.13'
+  gem 'factory_bot_rails',        '~> 4.0'
   gem 'faker'
   gem 'letter_opener'
   gem 'pry'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
 end
 
 group :development do

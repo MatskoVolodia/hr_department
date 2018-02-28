@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :user_group_users
   has_many :user_groups, through: :user_group_users
 
+  validates :first_name, :last_name, presence: :true
+
   def admin?
     is_a? Admin
   end
