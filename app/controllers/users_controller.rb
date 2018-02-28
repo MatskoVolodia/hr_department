@@ -12,15 +12,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    set_user if params[:id]
-
-    @user ||= current_user
+    @user = Users::Edit.call(user_id: params[:id], current_user: current_user)
   end
 
   def create
-    @user = User.new(user_params)
+    @user = Users::Create.call(user_params: user_params)
 
-    render :new and return unless @user.save
+    render :new and return unless @user.persisted?
 
     redirect_to users_path, notice: t('notices.created', item: User.name)
   end
@@ -32,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    Users::Destroy.call(user: @user)
 
     redirect_to users_path, notice: t('notices.destroyed', item: User.name)
   end
