@@ -2,14 +2,14 @@ module Posts
   class CoverageSummary
     include ActionView::Helpers::NumberHelper
 
-    delegate :targets, to: :post
+    delegate :targets, :user_groups, to: :post
 
     def initialize(params = {})
       @post = params[:post]
     end
 
     def views
-      @views ||= find_impressions
+      @views ||= Impression.where(impressionable: post).size
     end
 
     def percentage
@@ -17,7 +17,7 @@ module Posts
     end
 
     def has_targets?
-      post.targets.size.positive?
+      targets.size.positive?
     end
 
     private
@@ -25,15 +25,7 @@ module Posts
     attr_reader :post
 
     def percent_viewed
-      views.to_f / post.targets.size.to_f * 100
-    end
-
-    def find_impressions
-      Impression.where(impressionable: post).size
-    end
-
-    def user_groups
-      @user_groups ||= post.user_groups
+      views.to_f / targets.size * 100
     end
   end
 end

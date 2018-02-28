@@ -17,6 +17,7 @@ ActiveRecord::Migration.maintain_test_schema!
 FactoryBot.definition_file_paths << File.expand_path('../support/factories', __FILE__)
 
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
@@ -24,6 +25,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include FactoryBot::Syntax::Methods
-  config.include(Shoulda::Matchers::ActiveModel, type: :model)
-  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+  config.include Shoulda::Matchers::ActiveModel,  type: :model
+  config.include Shoulda::Matchers::ActiveRecord, type: :model
 end

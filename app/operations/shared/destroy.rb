@@ -5,7 +5,7 @@ module Shared
     end
 
     def call
-      item.destroy
+      item&.destroy
     end
 
     private

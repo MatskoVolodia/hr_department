@@ -5,11 +5,15 @@ module Posts
     end
 
     def call
-      post.targets.each { |t| PostsMailer.new_post_mail(post, t.email).deliver }
+      post.targets.each(&method(:send_mail))
     end
 
     private
 
     attr_reader :post
+
+    def send_mail(target)
+      PostsMailer.new_post_mail(post, target.email).deliver
+    end
   end
 end
