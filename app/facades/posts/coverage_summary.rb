@@ -16,7 +16,7 @@ module Posts
       @percentage ||= number_to_percentage(percent_viewed, precision: 2)
     end
 
-    def has_targets?
+    def targets?
       targets.size.positive?
     end
 

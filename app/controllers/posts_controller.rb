@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post,        only: %i[show edit update destroy]
+  before_action :prepare_params,  only: %i[create update]
 
   decorates_assigned :post
 
@@ -50,8 +51,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params[:post][:user_group_ids] ||= []
-
     params.require(:post).permit(
       :title,
       :content,
@@ -59,5 +58,9 @@ class PostsController < ApplicationController
       :attached_file,
       user_group_ids: []
     )
+  end
+
+  def prepare_params
+    params[:post][:user_group_ids] ||= []
   end
 end

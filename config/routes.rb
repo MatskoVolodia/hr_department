@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :user_groups, only: %i[index]
   end
 
-  resources :users do
+  resources :users, except: %i[show] do
     resources :user_groups, only: %i[index]
   end
 

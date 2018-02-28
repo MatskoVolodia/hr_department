@@ -17,6 +17,6 @@ describe Posts::CoverageSummary do
   end
 
   it 'should have targets' do
-    expect(facade.has_targets?).to be_truthy
+    expect(facade.targets?).to be_truthy
   end
 end

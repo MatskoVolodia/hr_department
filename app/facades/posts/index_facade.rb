@@ -6,12 +6,15 @@ module Posts
       @current_user      = params[:current_user]
     end
 
-    def ransack_q
-      @ransack_q ||= Post.ransack(query)
+    def ransack_query
+      @ransack_query ||= Post.ransack(query)
     end
 
     def posts
-      @posts ||= ransack_q.result.readable(current_user).paginate(pagination_params)
+      @posts ||= ransack_query
+        .result
+        .readable(current_user)
+        .paginate(pagination_params)
     end
 
     private

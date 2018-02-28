@@ -2,7 +2,7 @@
   .well.container.text-center
     = link_to t('defaults.create'), new_post_path, class: 'btn btn-success'
 
-= render 'shared/search_bar', query: @facade.ransack_q, searchable_fields: :title_or_content_cont
+= render 'shared/search_bar', query: @facade.ransack_query, searchable_fields: :title_or_content_cont
 
 - @facade.posts.each do |post|
   .well

@@ -7,7 +7,7 @@
 
   .tab-content
     #user-groups.tab-pane.fade.in.active
-      = render 'shared/search_bar', query: @facade.ransack_q, searchable_fields: :group_name_cont
+      = render 'shared/search_bar', query: @facade.ransack_query, searchable_fields: :group_name_cont
       = render 'table', user_groups: @facade.user_groups
 
     #create-user-group.tab-pane.fade.well

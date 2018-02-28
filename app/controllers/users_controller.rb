@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user,        only: %i[update destroy]
   before_action :create_new_user, only: %i[index new]
+  before_action :prepare_params,  only: %i[create update]
 
   load_and_authorize_resource
 
   def index
     @facade = Users::IndexFacade.new(
-      query: params[:q],
+      query:             params[:q],
       pagination_params: pagination_params
     )
   end
@@ -46,8 +47,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params[:user][:user_group_ids] ||= []
-
     params.require(:user).permit(
       :email,
       :first_name,
@@ -56,5 +55,9 @@ class UsersController < ApplicationController
       :password_confirmation,
       user_group_ids: []
     )
+  end
+
+  def prepare_params
+    params[:user][:user_group_ids] ||= []
   end
 end

@@ -5,12 +5,14 @@ module Users
       @pagination_params = params[:pagination_params]
     end
 
-    def ransack_q
-      @ransack_q ||= User.ransack(query)
+    def ransack_query
+      @ransack_query ||= User.ransack(query)
     end
 
     def users
-      @users ||= ransack_q.result.paginate(pagination_params)
+      @users ||= ransack_query
+        .result
+        .paginate(pagination_params)
     end
 
     private

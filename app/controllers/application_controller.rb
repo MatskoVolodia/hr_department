@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from ActiveRecord::RecordNotFound do
+    render file: 'public/404.html', status: 404
+  end
+
   def pagination_params
     {
       page:     params[:page],
