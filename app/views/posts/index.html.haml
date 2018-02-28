@@ -7,7 +7,7 @@
         .col-sm-5
           %h3= link_to post.title, post
         .col-sm-4
-          = render 'tags', post: post
+          = render 'tags', item: post
 
 .text-center
   = will_paginate @posts, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer

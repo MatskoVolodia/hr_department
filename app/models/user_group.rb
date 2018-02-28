@@ -1,4 +1,7 @@
 class UserGroup < ApplicationRecord
-  has_and_belongs_to_many :users
-  has_and_belongs_to_many :posts
+  has_many :user_group_users
+  has_many :users, through: :user_group_users
+
+  has_many :post_user_groups
+  has_many :posts, through: :post_user_groups
 end

@@ -7,7 +7,7 @@
 
   .tab-content
     #users.tab-pane.fade.in.active
-      = render 'shared/search_bar', query: @q, searchable_fields: :first_name_or_last_name_or_email_cont
-      = render 'table', users: @users
+      = render 'shared/search_bar', query: @facade.ransack_q, searchable_fields: :first_name_or_last_name_or_email_cont
+      = render 'table', users: @facade.users
     #create-user.tab-pane.fade.well
       = render 'form', user: @user

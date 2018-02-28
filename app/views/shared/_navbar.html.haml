@@ -6,6 +6,9 @@
       - if user_signed_in?
         = render 'shared/admin_menu_items' if current_user&.admin?
 
+        %li{ class: active_class(profile_path) }
+          = link_to t('navbar.profile'), profile_path
+
         %li{ class: active_class(posts_path) }
           = link_to t('navbar.posts'), posts_path
 

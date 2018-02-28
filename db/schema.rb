@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227215907) do
+ActiveRecord::Schema.define(version: 20180227224737) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20180227215907) do
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
+  create_table "post_user_groups", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_group_id"
+    t.index ["post_id"], name: "index_post_user_groups_on_post_id"
+    t.index ["user_group_id"], name: "index_post_user_groups_on_user_group_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -53,11 +60,11 @@ ActiveRecord::Schema.define(version: 20180227215907) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts_user_groups", force: :cascade do |t|
-    t.integer "post_id"
+  create_table "user_group_users", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "user_group_id"
-    t.index ["post_id"], name: "index_posts_user_groups_on_post_id"
-    t.index ["user_group_id"], name: "index_posts_user_groups_on_user_group_id"
+    t.index ["user_group_id"], name: "index_user_group_users_on_user_group_id"
+    t.index ["user_id"], name: "index_user_group_users_on_user_id"
   end
 
   create_table "user_groups", force: :cascade do |t|
@@ -73,11 +80,9 @@ ActiveRecord::Schema.define(version: 20180227215907) do
     t.index ["user_group_id"], name: "index_user_groups_posts_on_user_group_id"
   end
 
-  create_table "user_groups_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "user_group_id"
-    t.index ["user_group_id"], name: "index_user_groups_users_on_user_group_id"
-    t.index ["user_id"], name: "index_user_groups_users_on_user_id"
+  create_table "user_user_groups", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

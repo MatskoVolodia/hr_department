@@ -8,7 +8,11 @@ class PostsController < ApplicationController
   impressionist actions: %i[show], unique: %i[user_id impressionable_id]
 
   def index
-    @posts = Post.all.paginate(pagination_params)
+    @posts = Post.readable(current_user).paginate(pagination_params)
+  end
+
+  def show
+    @facade = Posts::CoverageSummary.new(post: post)
   end
 
   def new

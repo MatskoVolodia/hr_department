@@ -1,14 +1,3 @@
 .container
-  .well
-    .media
-      .pull-left
-        = image_tag post.picture.url(:thumb)
-      .media-body
-        %h4.text-left #{post.title} (#{post.created_ago})
-        %p= post.content
-        - if post.attached_file.present?
-          %hr
-          = link_to t('posts.download_attachment'), post.attached_file.url(:original)
-
-        %hr
-          = render 'tags', post: post
+  = render 'admin_dashboard', facade: @facade if current_user.admin?
+  = render 'post', post: post

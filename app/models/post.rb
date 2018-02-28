@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  has_and_belongs_to_many :user_groups
+  has_many :post_user_groups
+  has_many :user_groups, through: :post_user_groups
 
   is_impressionable
 
@@ -7,4 +8,6 @@ class Post < ApplicationRecord
   has_attached_file :attached_file
 
   validates_attachment :picture, size: { in: 0..5.megabytes }
+
+  scope :readable, -> (user) { includes(:user_groups).where(user_groups: { id: [nil, *user.user_groups] }) }
 end

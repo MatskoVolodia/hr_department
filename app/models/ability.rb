@@ -7,7 +7,11 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :read, Post
+      can :read, Post do |p|
+        Post.readable(user).include?(p)
+      end
+
+      can :update, User, id: user.id
     end
   end
 end

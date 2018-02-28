@@ -5,9 +5,11 @@
   = form_group(:first_name, f, :text_field)
   = form_group(:last_name,  f, :text_field)
 
-  = form_group(:password,              f, :password_field)
-  = form_group(:password_confirmation, f, :password_field)
+  - if user.new_record?
+    = form_group(:password,              f, :password_field)
+    = form_group(:password_confirmation, f, :password_field)
 
-  = render 'user_groups', user: @user, f: f
+  - if current_user.admin?
+    = render 'user_groups', user: user, f: f
 
   .actions= f.submit t('defaults.save'), class: 'form-control'

@@ -1,4 +1,4 @@
-%span.label.label-success= t('posts.everyone') if post.user_groups.empty?
+%span.label.label-success= t('posts.everyone') if item.user_groups.empty?
 
-- post.user_groups.each do |group|
+- item.user_groups.each do |group|
   %span.label.label-success= group.group_name

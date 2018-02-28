@@ -28,7 +28,6 @@ class Autocomplete
       url: @preselectUrl
     ).then (data) =>
       for item in data
-        console.log(item)
         option = new Option(item.text, item.id, true, true)
         @input.append(option).trigger('change')
         @input.trigger(

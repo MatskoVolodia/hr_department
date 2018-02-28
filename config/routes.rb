@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :users do
     resources :user_groups, only: %i[index]
   end
+
+  get :profile, to: 'users#edit'
 end

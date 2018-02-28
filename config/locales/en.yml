@@ -20,6 +20,7 @@ en:
   navbar:
     users:       Users
     user_groups: Groups
+    profile:     My Profile
 
   users:
     title:        Users
@@ -34,4 +35,8 @@ en:
 
   posts:
     download_attachment: Download attachment
-    everyone:            Everyone
+    everyone:            No groups
+
+    dashboard:
+      percentage: 'Viewed: '
+      out_of:     '%{current} out of %{target}'

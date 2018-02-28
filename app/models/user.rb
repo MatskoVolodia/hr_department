@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :validatable
 
-  has_and_belongs_to_many :user_groups
+  has_many :user_group_users
+  has_many :user_groups, through: :user_group_users
 
   def admin?
     is_a? Admin
