@@ -4,4 +4,6 @@ class UserGroup < ApplicationRecord
 
   has_many :post_user_groups
   has_many :posts, through: :post_user_groups
+
+  validates :group_name, presence: true
 end

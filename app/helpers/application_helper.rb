@@ -3,10 +3,10 @@ module ApplicationHelper
     attribute.to_s.humanize
   end
 
-  def form_group(attribute, form, field_type)
+  def form_group(attribute, form, field_type, required = false)
     content = [
       form.label(attribute),
-      form.send(field_type, attribute, class: 'form-control')
+      form.send(field_type, attribute, class: 'form-control', required: required)
     ].join("\n")
 
     content_tag(:div, class: 'form-group') { content.html_safe }

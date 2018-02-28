@@ -12,6 +12,8 @@ class Post < ApplicationRecord
   validates_attachment :picture, size: { in: 0..5.megabytes }
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
 
+  validates :title, presence: true
+
   scope :readable, -> (user) { includes(:user_groups).where(user_groups: { id: [nil, *user.user_groups] }) }
 
   def targets

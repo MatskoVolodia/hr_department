@@ -8,7 +8,10 @@ class UserGroupsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @facade = UserGroups::IndexFacade.new(params.merge(pagination_params: pagination_params))
+    @facade = UserGroups::IndexFacade.new(
+      params:            params,
+      pagination_params: pagination_params
+    )
   end
 
   def create
@@ -22,7 +25,7 @@ class UserGroupsController < ApplicationController
   def update
     render :edit unless @user_group.update(user_group_params)
 
-    redirect_to @user_group, notice: t('notices.updated', item: UserGroup.name)
+    redirect_to user_groups_path, notice: t('notices.updated', item: UserGroup.name)
   end
 
   def destroy

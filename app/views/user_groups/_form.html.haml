@@ -1,6 +1,6 @@
 = form_for user_group do |f|
   = render 'shared/form_errors', item: user_group
 
-  = form_group(:group_name, f, :text_field)
+  = form_group(:group_name, f, :text_field, true)
 
   .actions= f.submit t('defaults.save'), class: 'form-control'

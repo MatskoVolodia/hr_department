@@ -1,9 +1,9 @@
 = form_for user, as: :user, url: user.new_record? ? users_path : user_path(user) do |f|
   = render 'shared/form_errors', item: user
 
-  = form_group(:email,      f, :email_field)
-  = form_group(:first_name, f, :text_field)
-  = form_group(:last_name,  f, :text_field)
+  = form_group(:email,      f, :email_field, true)
+  = form_group(:first_name, f, :text_field, true)
+  = form_group(:last_name,  f, :text_field, true)
 
   - if user.new_record?
     = form_group(:password,              f, :password_field)

@@ -1,13 +1,22 @@
-- @posts.each do |post|
+.well.container.text-center
+  = link_to t('defaults.create'), new_post_path, class: 'btn btn-success'
+
+= render 'shared/search_bar', query: @facade.ransack_q, searchable_fields: :title_or_content_cont
+
+- @facade.posts.each do |post|
   .well
     .container
       .row
         .col-sm-3
           = image_tag post.picture.url(:thumb)
-        .col-sm-5
+        .col-sm-3
           %h3= link_to post.title, post
-        .col-sm-4
+        .col-sm-3
           = render 'tags', item: post
+        - if can? :manage, post
+          .col-sm-3
+            = link_to t('defaults.destroy'), post_path(post), method: :delete, data: { confirm: t('defaults.confirmation') }, class: 'btn btn-danger pull-right'
+            = link_to t('defaults.edit'), edit_post_path(post), class: 'btn btn-primary pull-right'
 
 .text-center
-  = will_paginate @posts, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer
+  = will_paginate @facade.posts, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer
