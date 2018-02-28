@@ -40,3 +40,8 @@ en:
     dashboard:
       percentage: 'Viewed: '
       out_of:     '%{current} out of %{target}'
+
+  mailers:
+    posts:
+      new_post_subject: New post was created!
+      view:             View Post

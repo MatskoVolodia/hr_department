@@ -9,7 +9,7 @@ module ApplicationHelper
       form.send(field_type, attribute, class: 'form-control')
     ].join("\n")
 
-    content_tag(:div, class: 'form-group') { content }
+    content_tag(:div, class: 'form-group') { content.html_safe }
   end
 
   def flash_class(level)

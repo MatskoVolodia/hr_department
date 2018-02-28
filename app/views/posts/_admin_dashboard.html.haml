@@ -2,4 +2,4 @@
   %h4
     %span= t('posts.dashboard.percentage')
     %span= facade.percentage
-    %span (#{t('posts.dashboard.out_of', current: facade.views, target: facade.targets)})
+    %span (#{t('posts.dashboard.out_of', current: facade.views, target: facade.targets.size)})
